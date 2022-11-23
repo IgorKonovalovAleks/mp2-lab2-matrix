@@ -283,7 +283,7 @@ public:
   {
       
       if (m.sz != sz) {
-          throw exception;
+          throw exception();
           return TDynamicMatrix();
       }
 
