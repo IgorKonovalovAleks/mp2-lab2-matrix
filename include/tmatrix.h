@@ -145,7 +145,7 @@ public:
   TDynamicVector operator+(const TDynamicVector& v)
   {
       if (sz != v.sz)
-          throw "cannot sum vectors of different length";
+          throw exception();
 
       TDynamicVector tdv(sz);
       for (int i = 0; i < sz; i++) {
@@ -158,7 +158,7 @@ public:
   TDynamicVector operator-(const TDynamicVector& v)
   {
       if (sz != v.sz)
-          throw "cannot sub vectors of different length";
+          throw exception();
 
       TDynamicVector tdv(sz);
       for (int i = 0; i < sz; i++) {
@@ -167,10 +167,10 @@ public:
 
       return tdv;
   }
-  T operator*(const TDynamicVector& v) noexcept(noexcept(T()))
+  T operator*(const TDynamicVector& v) 
   {
       if (sz != v.sz)
-          throw "cannot mul vectors of different length";
+          throw exception();
 
       T res = (T)0;
       for (int i = 0; i < sz; i++) {
