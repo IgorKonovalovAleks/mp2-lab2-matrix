@@ -145,7 +145,7 @@ public:
   TDynamicVector operator+(const TDynamicVector& v)
   {
       if (sz != v.sz)
-          throw exception("cannot sum vectors of different length");
+          throw "cannot sum vectors of different length";
 
       TDynamicVector tdv(sz);
       for (int i = 0; i < sz; i++) {
@@ -158,7 +158,7 @@ public:
   TDynamicVector operator-(const TDynamicVector& v)
   {
       if (sz != v.sz)
-          throw exception("cannot sub vectors of different length");
+          throw "cannot sub vectors of different length";
 
       TDynamicVector tdv(sz);
       for (int i = 0; i < sz; i++) {
@@ -170,7 +170,7 @@ public:
   T operator*(const TDynamicVector& v) noexcept(noexcept(T()))
   {
       if (sz != v.sz)
-          throw exception("cannot mul vectors of different length");
+          throw "cannot mul vectors of different length";
 
       T res = (T)0;
       for (int i = 0; i < sz; i++) {
@@ -291,7 +291,7 @@ public:
       for (int i = 0; i < sz; i++) {
           for (int j = 0; j < sz; j++) {
               tdm[i][j] = 0;
-              for (int k = 0; k < cl; k++) {
+              for (int k = 0; k < sz; k++) {
                   tdm[i][j] += pMem[i][k] * m[k][j];
               }
           }
