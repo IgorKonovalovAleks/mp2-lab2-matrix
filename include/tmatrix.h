@@ -240,12 +240,25 @@ public:
   {
       
 
-      return TDynamicVector<TDynamicVector<T>>::operator*(v);
+      if (size() != v.size())
+          throw exception();
+
+      TDynamicVector<T> tmp(sz);
+
+      for (size_t i = 0; i < sz; i++)
+          tmp[i] = pMem[i] * v[i];
+
+      return tmp;
+
   }
 
   // матрично-матричные операции
   TDynamicMatrix operator+(const TDynamicMatrix& m)
   {
+      if (sz != m.sz) {
+          throw exception();
+          return TDynamicMatrix();
+      }
       TDynamicMatrix tdm(sz);
       for (int i = 0; i < sz; i++)
           tdm[i] = pMem[i] + m[i];
@@ -254,6 +267,12 @@ public:
   }
   TDynamicMatrix operator-(const TDynamicMatrix& m)
   {
+
+      if (sz != m.sz) {
+          throw exception();
+          return TDynamicMatrix();
+      }
+
       TDynamicMatrix tdm(sz);
       for (int i = 0; i < sz; i++)
           tdm[i] = pMem[i] - m[i];
